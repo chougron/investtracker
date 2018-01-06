@@ -1,0 +1,5 @@
+/node_modules
+/yarn.lock
+/dist
+/__tests__
+/TEST-jest_junit.xml

@@ -1,0 +1,49 @@
+{
+  "name": "investtracker2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^22.0.1",
+    "@types/react": "^16.0.34",
+    "@types/react-dom": "^16.0.3",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015-node": "^6.1.1",
+    "babel-preset-react": "^6.24.1",
+    "electron": "^1.7.10",
+    "html-webpack-plugin": "^2.30.1",
+    "jest": "^22.0.4",
+    "jest-junit": "^3.4.1",
+    "standard": "^10.0.3",
+    "standard-loader": "^6.0.1",
+    "ts-loader": "^3.2.0",
+    "tslint": "^5.8.0",
+    "tslint-config-standard": "^7.0.0",
+    "tslint-loader": "^3.5.3",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "prestart": "yarn run build",
+    "start": "electron ./dist/main.js",
+    "pretest": "webpack --config webpack.tests.config.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "jest": {
+    "testRegex": "/__tests__/.*\\.jsx?",
+    "testResultsProcessor": "./node_modules/jest-junit"
+  },
+  "jest-junit": {
+    "suiteName": "jest tests",
+    "output": "./TEST-jest_junit.xml",
+    "classNameTemplate": "{classname}-{title}",
+    "titleTemplate": "{classname}-{title}",
+    "usePathForSuiteName": "true"
+  }
+}
