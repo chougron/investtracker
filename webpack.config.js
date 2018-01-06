@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 const commonConfig = {
   output: {
@@ -46,6 +47,7 @@ module.exports = [
     {
       target: 'electron-main',
       entry: { main: './src/main.ts' },
+      plugins: [ new webpack.SourceMapDevToolPlugin({ filename: '[name].js.map' }) ],
       node: {
         __dirname: false
       }
@@ -53,9 +55,13 @@ module.exports = [
     commonConfig),
   Object.assign(
     {
+      devtool: 'source-map',
       target: 'electron-renderer',
       entry: { gui: './src/gui.tsx' },
-      plugins: [new HtmlWebpackPlugin()],
+      plugins: [
+        new HtmlWebpackPlugin(),
+        new webpack.SourceMapDevToolPlugin({ filename: '[name].js.map' })
+      ],
       node: {
         __dirname: false
       }
