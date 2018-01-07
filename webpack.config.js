@@ -33,12 +33,30 @@ const commonConfig = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.(scss|css)$/,
+        use: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap'],
+      },
+      {
+        test   : /\.woff|\.woff2|\.svg|.eot|\.ttf/,
+        loader : 'file-loader'
       }
     ]
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.jsx', '.json']
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      tether: 'tether',
+      Tether: 'tether',
+      'window.Tether': 'tether',
+    })
+  ]
 }
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
