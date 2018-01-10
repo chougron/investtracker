@@ -33,6 +33,7 @@
     "webpack": "^3.10.0"
   },
   "scripts": {
+    "watch": "webpack --watch --config webpack.config.js",
     "build": "webpack --config webpack.config.js",
     "prestart": "yarn run build",
     "start": "electron ./dist/main.js –enable-logging –remote-debugging-port=9222 –debug-brk=5858",
