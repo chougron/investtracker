@@ -1,0 +1,19 @@
+.capital-list-item{
+  color: #3BAFDA;
+  padding: 10px;
+  &-content {
+    background-color: #36404A;
+    height: 120px;
+    padding: 10px;  
+  }
+  &--price{
+    line-height: 100px;
+    font-weight: bold;
+    font-size: 150%;
+  }
+}
+
+.capital-list .capital-list-item{
+  padding-left: 10px;
+  padding-right: 10px;
+}
