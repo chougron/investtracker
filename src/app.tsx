@@ -1,14 +1,15 @@
 import React from 'react'
-import CapitalRepository from './repositories/capitalRepository'
-import CapitalList from './ui/dashboard/capital-list/list'
+import Dashboard from './ui/dashboard/dashboard'
+import Reboot from 'material-ui/Reboot'
 
 export default class App extends React.Component {
   public render() {
-    let capitals = CapitalRepository.getSaved()
     return (
-      <div className="container-full">
-        <CapitalList capitals={capitals}></CapitalList>
-      </div>
+    <div>
+      <Reboot />
+      
+      <Dashboard />
+    </div>
     )
   }
 }

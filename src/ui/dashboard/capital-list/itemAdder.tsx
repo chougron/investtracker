@@ -1,16 +1,21 @@
 import * as React from 'react'
 import './itemAdder.scss'
+import Grid from 'material-ui/Grid'
 
 interface ICapitalListItemAdderProps {
+  clickAction : () => void
 }
 
 export default class CapitalListItemAdder extends React.Component<ICapitalListItemAdderProps, {}> {
 
   public render(){
-    return (<div className="col-xs-3 capital-list-item">
-      <div className="capital-list-item-content item-adder">
-        +
-      </div>
-    </div>)
+    let clickAction = this.props.clickAction
+
+    return (
+      <Grid item xs={3} onClick={clickAction}>
+        <div className="capital-list-item item-adder">
+          +
+        </div>
+      </Grid>)
   }
 }

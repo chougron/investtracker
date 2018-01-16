@@ -2,6 +2,7 @@ import * as React from 'react'
 import Capital from '../../../models/capital'
 import CapitalIcon from '../../components/capital/icon'
 import './item.scss'
+import Grid from 'material-ui/Grid'
 
 interface ICapitalListItemProps {
   readonly capital : Capital
@@ -13,17 +14,17 @@ export default class CapitalListItem extends React.Component<ICapitalListItemPro
     let capital = this.props.capital
     let price = capital.currentPrice
 
-    return (<div className="col-xs-3 capital-list-item">
-      <div className="capital-list-item-content">
-        <div className="row">
-          <div className="col-xs-6">
+    return (<Grid item xs={3}>
+      <div className="capital-list-item">
+        <Grid container spacing={0}>
+          <Grid item xs={6}>
             <CapitalIcon capital={capital}></CapitalIcon>
-          </div>
-          <div className="col-xs-6 capital-list-item--price">
+          </Grid>
+          <Grid item xs={6} className="capital-list-item--price">
             {price}
-          </div>
-        </div>
+          </Grid>
+        </Grid>
       </div>
-    </div>)
+    </Grid>)
   }
 }

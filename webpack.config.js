@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const nodeExternals = require('webpack-node-externals');
 
 const commonConfig = {
   output: {
@@ -46,17 +47,7 @@ const commonConfig = {
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.jsx', '.json']
-  },
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      tether: 'tether',
-      Tether: 'tether',
-      'window.Tether': 'tether',
-    })
-  ]
+  }
 }
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -66,6 +57,7 @@ module.exports = [
       target: 'electron-main',
       entry: { main: './src/main.ts' },
       plugins: [ new webpack.SourceMapDevToolPlugin({ filename: '[name].js.map' }) ],
+      externals: [nodeExternals()],
       node: {
         __dirname: false
       }
@@ -76,6 +68,7 @@ module.exports = [
       devtool: 'source-map',
       target: 'electron-renderer',
       entry: { gui: './src/gui.tsx' },
+      externals: [nodeExternals()],
       plugins: [
         new HtmlWebpackPlugin(),
         new webpack.SourceMapDevToolPlugin({ filename: '[name].js.map' })
