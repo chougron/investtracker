@@ -6,6 +6,7 @@ import Grid from 'material-ui/Grid'
 
 interface ICapitalListItemProps {
   readonly capital : Capital
+  clickAction : (...args: any[]) => void
 }
 
 export default class CapitalListItem extends React.Component<ICapitalListItemProps, {}> {
@@ -13,8 +14,9 @@ export default class CapitalListItem extends React.Component<ICapitalListItemPro
   public render(){
     let capital = this.props.capital
     let price = capital.currentPrice
+    let clickAction = this.onClick
 
-    return (<Grid item xs={3}>
+    return (<Grid item xs={3} onClick={clickAction.bind(this)}>
       <div className="capital-list-item">
         <Grid container spacing={0}>
           <Grid item xs={6}>
@@ -26,5 +28,10 @@ export default class CapitalListItem extends React.Component<ICapitalListItemPro
         </Grid>
       </div>
     </Grid>)
+  }
+
+  public onClick(){
+    let capital = this.props.capital
+    this.props.clickAction(capital)
   }
 }

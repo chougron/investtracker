@@ -4,6 +4,7 @@ import CapitalListItem from './item'
 import CapitalListItemAdder from './itemAdder'
 import './list.scss'
 import Grid from 'material-ui/Grid'
+import App from '../../../app'
 
 interface ICapitalListProps {
   capitals : Array<Capital>
@@ -13,8 +14,9 @@ interface ICapitalListProps {
 export default class CapitalList extends React.Component<ICapitalListProps, {}> {
 
   public render(){
+    let capitalClickAction = this.capitalClickAction
     let elements = this.props.capitals.map( (capital) => {
-      return (<CapitalListItem capital={capital} ></CapitalListItem>)
+      return (<CapitalListItem capital={capital} clickAction={capitalClickAction}></CapitalListItem>)
     })
 
     let clickAction = this.props.newItemClickAction
@@ -23,5 +25,13 @@ export default class CapitalList extends React.Component<ICapitalListProps, {}> 
         {elements}
         <CapitalListItemAdder clickAction={clickAction}></CapitalListItemAdder>
     </Grid>)
+  }
+
+  public capitalClickAction(...args : any[]){
+    console.log("Click list")
+    console.log(args)
+    let capital = args[0]
+    let app = App.getInstance()
+    app.showCapitalPage(capital)
   }
 }
