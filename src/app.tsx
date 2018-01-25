@@ -17,7 +17,7 @@ export default class App extends React.Component {
   }
 
   page : AppState = AppState.Dashboard
-  currentCapital : Capital | null
+  currentCapital : Capital
 
   public render() {
     console.log("Rendered");
@@ -38,14 +38,14 @@ export default class App extends React.Component {
         console.log("Dashboard");
         return (<Dashboard />)
       case AppState.CapitalPage:
-      console.log("Capital Page");
-        return (<CapitalPage/>)
+        console.log("Capital Page");
+        let capital = this.currentCapital
+        return (<CapitalPage capital={capital} />)
     }
   }
 
   public showDashBoard() {
     this.page = AppState.Dashboard
-    this.currentCapital = null
     this.setState({})
   }
 
