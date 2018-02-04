@@ -4,24 +4,27 @@ import Reboot from 'material-ui/Reboot'
 import Capital from './models/capital'
 import CapitalPage from './ui/capital-page/capitalPage'
 
-export default class App extends React.Component {
+interface IAppState {
+  /** The page correspond to the screen to show */
+  page: AppPage,
+  /** The currentCapital is the one we are currently checking */
+  currentCapital?: Capital
+}
+
+export default class App extends React.Component<{}, IAppState> {
+
+  constructor(props: {}) {
+    super(props)
+    App.singleton = this
+    this.state = {page: AppPage.Dashboard}
+  }
 
   static singleton : App
   public static getInstance() : App{
     return App.singleton
   }
 
-  constructor(props : any) {
-    super(props)
-    App.singleton = this
-  }
-
-  page : AppState = AppState.Dashboard
-  currentCapital : Capital
-
   public render() {
-    console.log("Rendered");
-    console.log(this.state);
     let appRender = this.getAppRender();
     return (
     <div>
@@ -31,32 +34,38 @@ export default class App extends React.Component {
     )
   }
 
+  /**
+   * Render the app depending of the page we are in
+   */
   public getAppRender() {
-    switch(this.page){
+    switch(this.state.page){
       case null:
-      case AppState.Dashboard:
-        console.log("Dashboard");
+      case AppPage.Dashboard:
         return (<Dashboard />)
-      case AppState.CapitalPage:
-        console.log("Capital Page");
-        let capital = this.currentCapital
+      case AppPage.CapitalPage:
+        let capital = this.state.currentCapital as Capital
         return (<CapitalPage capital={capital} />)
     }
   }
 
+  /**
+   * Set the page to show as the dashboard
+   */
   public showDashBoard() {
-    this.page = AppState.Dashboard
-    this.setState({})
+    this.setState({page: AppPage.Dashboard})
   }
 
+  /**
+   * Set the page to show as a capital page
+   * @param capital The capital to show
+   */
   public showCapitalPage(capital : Capital) {
-    this.page = AppState.CapitalPage
-    this.currentCapital = capital
-    this.setState({})
+    this.setState({page: AppPage.CapitalPage, currentCapital: capital})
   }
 }
 
-enum AppState {
+/** The different pages of the app */
+enum AppPage {
   Dashboard,
   CapitalPage
 }

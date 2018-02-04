@@ -1,5 +1,6 @@
 export default abstract class Capital {
-
+  /** The unique identifier of the capital */
+  public uuid: string | null
   /** The name of the capital */
   public readonly name: string
   /** The abbreviation of the capital */

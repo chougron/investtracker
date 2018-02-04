@@ -5,6 +5,7 @@ import './item.scss'
 import Grid from 'material-ui/Grid'
 
 interface ICapitalListItemProps {
+  key : string
   readonly capital : Capital
   clickAction : (...args: any[]) => void
 }

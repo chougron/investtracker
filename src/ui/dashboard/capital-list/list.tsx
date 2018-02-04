@@ -16,7 +16,8 @@ export default class CapitalList extends React.Component<ICapitalListProps, {}> 
   public render(){
     let capitalClickAction = this.capitalClickAction
     let elements = this.props.capitals.map( (capital) => {
-      return (<CapitalListItem capital={capital} clickAction={capitalClickAction}></CapitalListItem>)
+      let key = capital.uuid as string
+      return (<CapitalListItem capital={capital} clickAction={capitalClickAction} key={key}></CapitalListItem>)
     })
 
     let clickAction = this.props.newItemClickAction

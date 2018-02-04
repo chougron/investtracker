@@ -5,13 +5,10 @@ import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui-icons/Close';
 
-
 interface IHeaderProps {
   title : string
   closeClickAction : () => void
 }
-
-
 
 export default class Header extends React.Component<IHeaderProps, {}> {
   public render() {
